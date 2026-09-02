@@ -26,7 +26,7 @@
 *{box-sizing:border-box}
 html{
   -webkit-text-size-adjust:100%;
-  background:var(--deep);          /* top overscroll matches the masthead */
+  background:var(--deep);          
   overflow-x:hidden;
 }
 body{
@@ -63,7 +63,7 @@ a{color:var(--cyan-ink)}
 .mast .flag{margin-left:auto}
 .back{
   display:flex;align-items:center;justify-content:center;
-  width:44px;height:44px;margin-left:-11px;   /* optical alignment to the gutter */
+  width:44px;height:44px;margin-left:-11px;   
   flex:none;background:none;border:0;padding:0;
   color:#fff;cursor:pointer;border-radius:50%;
 }
@@ -135,7 +135,6 @@ a{color:var(--cyan-ink)}
   border:2px solid var(--cyan);
 }
 .cta:hover{background:#2ee0e0;border-color:#2ee0e0}
-.cta-sub{margin:14px 0 0;font-size:.9rem;color:#89b4c2}
 
 /* ---------- generic section ---------- */
 section{padding:74px 0}
@@ -187,7 +186,7 @@ td.total{font-weight:800;color:var(--cyan-ink);font-variation-settings:"wdth" 10
 }
 .rules li b{font-weight:800}
 
-/* ---------- join form (lives in the hero) ---------- */
+/* ---------- join form / dynamic states ---------- */
 .form-shell{
   background:var(--deeper);
   border:2px solid var(--cyan);
@@ -210,7 +209,7 @@ td.total{font-weight:800;color:var(--cyan-ink);font-variation-settings:"wdth" 10
 .field .hint{font-size:.87rem;color:#7fb6c6;margin:0 0 10px}
 .field input[type=text],.field input[type=email]{
   width:100%;padding:14px 15px;font-family:inherit;
-  font-size:max(16px, 1rem);   /* under 16px iOS zooms the page on focus */
+  font-size:max(16px, 1rem);
   background:#00304f;border:1px solid #2a6c92;color:#fff;border-radius:5px;
   -webkit-appearance:none;appearance:none;
 }
@@ -220,13 +219,48 @@ td.total{font-weight:800;color:var(--cyan-ink);font-variation-settings:"wdth" 10
 .consent input{margin-top:5px;width:18px;height:18px;flex:none;accent-color:var(--cyan)}
 .consent label{font-size:.93rem;color:#bcdde5;line-height:1.5}
 .consent a{color:var(--cyan)}
+
 button.cta{font-family:inherit;cursor:pointer;margin-top:0}
 button.cta[disabled]{opacity:.55;cursor:not-allowed}
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: rgba(0, 204, 204, 0.1); }
+
 .trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .deadline{margin:16px 0 0;font-size:.92rem;color:#7fb6c6;text-align:center}
 .status{margin:18px 0 0;font-size:.95rem;padding:14px 16px;border-radius:5px;display:none}
 .status.ok{display:block;background:#04413f;border:1px solid var(--cyan);color:#c9f7f7}
 .status.bad{display:block;background:#4a2318;border:1px solid #d2724f;color:#ffd9c9}
+
+/* Dynamic State Styling */
+.success-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 204, 204, 0.15);
+    color: var(--cyan);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.code-display-box {
+    background: #00304f;
+    border: 1px dashed var(--cyan);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    text-align: center;
+}
 
 /* ---------- sticky reminder ---------- */
 .sticky{
@@ -248,9 +282,6 @@ button.cta[disabled]{opacity:.55;cursor:not-allowed}
   background:#00202e;color:#fff;text-decoration:none;
   font-weight:800;font-size:.95rem;padding:12px 20px;border-radius:5px;
   white-space:nowrap;flex:none;
-}
-@media (prefers-reduced-motion:reduce){
-  .sticky{transition:none}
 }
 
 /* ---------- faq ---------- */
@@ -298,7 +329,6 @@ footer a{color:#9fd8dd}
   th,td{padding:12px 16px}
   caption{padding:16px 16px 0}
   .scroll-hint{display:block}
-  /* full-width buttons give a reliable tap target on phones */
   .cta{display:block;width:100%;text-align:center;padding:16px 20px}
   .consent input{width:22px;height:22px;margin-top:3px}
   summary{padding:2px 0}
@@ -334,7 +364,6 @@ footer a{color:#9fd8dd}
       </svg>
     </button>
     <a class="logo" href="#" aria-label="Tbay">
-      <!-- Self-host this before launch. See note at the foot of the file. -->
       <img id="logoImg" src="https://brand-assets.mailchimp.com/01K6N06ZGX1M5YP1VYDYQMTTBN.png"
            alt="Tbay" height="28" decoding="async">
       <span class="logo-text" id="logoText" hidden>T<span>bay</span></span>
@@ -367,29 +396,54 @@ footer a{color:#9fd8dd}
     </div>
 
     <div class="form-shell" id="join">
-      <h2 class="form-h">Submit your code before you share it</h2>
-      <p class="form-warn">Referrals only count once your code is registered here. Share your code without registering it first and no bonus is paid, even if your friend trades.</p>
+        
+      <!-- STATE 1: Registration Form -->
+      <div id="form-state">
+          <h2 class="form-h" id="form-title">Submit your code before you share it</h2>
+          <p class="form-warn" id="form-warning">Referrals only count once your code is registered here. Share your code without registering it first and no bonus is paid, even if your friend trades.</p>
 
-      <div class="field">
-        <label for="code">Your Tbay referral code</label>
-        <p class="hint">Find it in the Tbay app under Profile &rsaquo; Referral. That is all we need.</p>
-        <input type="text" id="code" name="code" placeholder="e.g. TB4K9QX"
-               autocomplete="off" spellcheck="false" autocapitalize="characters" enterkeyhint="go">
+          <div class="field">
+            <label for="code">Your Tbay referral code</label>
+            <p class="hint">Find it in the Tbay app under Profile &rsaquo; Referral.</p>
+            <input type="text" id="code" name="code" placeholder="e.g. TB4K9QX"
+                   autocomplete="off" spellcheck="false" autocapitalize="characters" enterkeyhint="go">
+          </div>
+
+          <div class="trap" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="consent">
+            <input type="checkbox" id="agree">
+            <label for="agree">I have read <a href="#rules">who qualifies</a> and I understand that entries are verified, and that referring an existing Tbay user will be disqualified.</label>
+          </div>
+
+          <button class="cta" id="submitBtn" type="button">Register my code</button>
+          <p class="deadline">Registration closes 30 September 2026.</p>
       </div>
 
-      <!-- Honeypot: hidden from people, bots fill it and get discarded. -->
-      <div class="trap" aria-hidden="true">
-        <label for="website">Website</label>
-        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      <!-- STATE 2: Success / Editing State -->
+      <div id="success-state" style="display: none;">
+          <div class="success-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+          </div>
+          <h2 class="form-h" style="color: var(--cyan); margin-bottom: 8px;">Thank you for your entry!</h2>
+          <p style="color: #bcdde5; margin-bottom: 24px;">Your referral code has been successfully registered. You are ready to start inviting friends.</p>
+          
+          <div class="code-display-box">
+              <p style="color: #7fb6c6; font-size: 0.9rem; margin-bottom: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Your Registered Code</p>
+              <div id="display-code" style="color: #fff; font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; font-variation-settings: 'wdth' 120;">TB4K9QX</div>
+          </div>
+          
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 24px; flex-wrap: wrap; gap: 16px;">
+              <p id="changes-left-text" style="color: #7fb6c6; font-size: 0.9rem; margin: 0;"></p>
+              <button class="btn-outline" id="editBtn" type="button">Change Code</button>
+          </div>
       </div>
 
-      <div class="consent">
-        <input type="checkbox" id="agree">
-        <label for="agree">I have read <a href="#rules">who qualifies</a> and I understand that entries are verified, and that referring an existing Tbay user will be disqualified.</label>
-      </div>
-
-      <button class="cta" id="submitBtn" type="button">Register my code</button>
-      <p class="deadline">Registration closes 30 September 2026.</p>
       <p class="status" id="status" role="status"></p>
     </div>
   </div>
@@ -528,7 +582,7 @@ footer a{color:#9fd8dd}
 
 <footer>
   <div class="wrap">
-    <p>Campaign runs from [start date] to 30 September 2026 and may close earlier once the reward budget is exhausted. Your code must be registered, and the friend you refer must create their Tbay account, on or before 30 September 2026. Their 30 days to reach ₦50,000 runs from their own sign-up date and may finish after the campaign has closed.</p>
+    <p>Campaign runs from 01 to 30 September 2026. Your code must be registered, and the friend you refer must create their Tbay account, on or before 30 September 2026. Their 30 days to reach ₦50,000 runs from their own sign-up date and may finish after the campaign has closed.</p>
     <p>Tbay may amend or end this campaign at any time. Rewards are credited to your Tbay wallet in Nigerian naira.</p>
     <p>Membership level rewards shown are the standard direct invitation rewards and may change independently of this campaign. Full terms apply and are available in the app.</p>
     <p>Need help? Reach support through the Tbay app.</p>
@@ -545,25 +599,6 @@ footer a{color:#9fd8dd}
 <script>
 // ---------------------------------------------------------------
 // BACK BUTTON  (iOS only — this page is served inside the iOS app)
-//
-// A web page cannot close its own in-app browser on its own. This
-// tries the methods that work without app changes, in order, and
-// falls back to a visible hint if none of them do.
-//
-// For a guaranteed close, the iOS app needs ONE of:
-//
-//   WKWebView:  a script message handler named "close",
-//               "closeWebView" or "tbay"
-//   URL scheme: one the app intercepts, e.g. tbay://close
-//               — put it in APP_CLOSE_SCHEME below
-//
-// Ask the iOS team which exists, then this button works reliably.
-// Leave APP_CLOSE_SCHEME empty until a scheme is confirmed: sending
-// the browser to an unregistered scheme shows an error page.
-//
-// Note: SFSafariViewController cannot be dismissed from the page at
-// all. If the app uses it, remove this button rather than ship a
-// decorative one — it already has a native Done control.
 // ---------------------------------------------------------------
 var APP_CLOSE_SCHEME = "";
 
@@ -587,18 +622,12 @@ var APP_CLOSE_SCHEME = "";
 
   backBtn.addEventListener("click", function(){
     if (tryIosBridge()) return;
-
     if (APP_CLOSE_SCHEME) { window.location.href = APP_CLOSE_SCHEME; return; }
-
-    // Works only where the window was opened by script.
     try { window.close(); } catch (e) {}
-
-    // window.close() fails silently, so check whether we are still here.
+    
     setTimeout(function(){
       if (document.hidden) return;
-
       if (history.length > 1) { history.back(); return; }
-
       backHint.classList.add("show");
       window.scrollTo({top: 0, behavior: "smooth"});
     }, 260);
@@ -606,10 +635,7 @@ var APP_CLOSE_SCHEME = "";
 })();
 
 // ---------------------------------------------------------------
-// LOGO: currently loaded from the Mailchimp brand-assets CDN.
-// Download the file and serve it from Tbay's own domain before
-// launch — a third-party CDN can change or expire the URL, and
-// the masthead would silently fall back to the text wordmark.
+// LOGO FALLBACK
 // ---------------------------------------------------------------
 (function(){
   var img = document.getElementById("logoImg");
@@ -621,24 +647,89 @@ var APP_CLOSE_SCHEME = "";
 })();
 
 // ---------------------------------------------------------------
-// ENTRY COLLECTION
-// Paste the Google Apps Script web app URL into ENDPOINT, and the
-// same SHARED_KEY you set in the script into SUBMIT_KEY.
-// Setup steps are in apps-script-collector.gs.
+// ENTRY COLLECTION & STORAGE LOGIC
 // ---------------------------------------------------------------
-var ENDPOINT   = "https://script.google.com/macros/s/AKfycbyJ60DJwc6bzOe-q1O5FxkuQwkskUqEldXYSXHyNZ9D0MJ2BjCDUv0J4CkGmhosnw/exec";
-var SUBMIT_KEY = "tbay-ios-9f3k2q";
+// REPLACE WITH YOUR DEPLOYED GOOGLE APPS SCRIPT URL
+var ENDPOINT   = "https://script.google.com/macros/s/AKfycbxv4w4dPRAQftJKL-DwuT-zm8qaW6QbFY55zzsw44buRfnBQq3ErbqADx7qrtIpO1dA/exec"; 
 
 var btn = document.getElementById("submitBtn");
 var status = document.getElementById("status");
-
-// Sticky reminder: visible whenever the form is not on screen, so the
-// registration step cannot be scrolled past and forgotten.
 var sticky = document.getElementById("sticky");
+
+// State Elements
+var formState = document.getElementById('form-state');
+var successState = document.getElementById('success-state');
+var displayCode = document.getElementById('display-code');
+var changesLeftText = document.getElementById('changes-left-text');
+var editBtn = document.getElementById('editBtn');
+
+// Storage Keys
+var KEY_UID = 'tbay_iphone_campaign_uid';
+var KEY_CODE = 'tbay_iphone_campaign_code';
+var KEY_CHANGES = 'tbay_iphone_campaign_changes';
+
+// 1. Generate or Retrieve UUID
+function getUID() {
+    var uid = localStorage.getItem(KEY_UID);
+    if (!uid) {
+        uid = 'xxxx-xxxx-4xxx-yxxx-xxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+        localStorage.setItem(KEY_UID, uid);
+    }
+    return uid;
+}
+var userID = getUID();
+
+// 2. Load Existing State
+var savedCode = localStorage.getItem(KEY_CODE);
+var changeCount = parseInt(localStorage.getItem(KEY_CHANGES) || '0', 10);
 var joined = false;
+
+function updateUIState() {
+    if (savedCode) {
+        // User has already submitted a code
+        joined = true;
+        formState.style.display = 'none';
+        successState.style.display = 'block';
+        displayCode.textContent = savedCode;
+        status.style.display = 'none';
+        
+        var changesLeft = 3 - changeCount;
+        if (changesLeft > 0) {
+            changesLeftText.textContent = "You can change your code " + changesLeft + " more time" + (changesLeft === 1 ? "" : "s") + ".";
+            editBtn.style.display = 'block';
+        } else {
+            changesLeftText.textContent = "You have reached the maximum number of code changes.";
+            editBtn.style.display = 'none';
+        }
+        sticky.classList.remove("show"); // Hide sticky
+    } else {
+        // New User / Editing
+        formState.style.display = 'block';
+        successState.style.display = 'none';
+    }
+}
+
+// Run on load
+updateUIState();
+
+// 3. Edit Button Handler
+editBtn.addEventListener('click', function() {
+    formState.style.display = 'block';
+    successState.style.display = 'none';
+    
+    document.getElementById('code').value = savedCode;
+    document.getElementById('form-title').textContent = "Update your referral code";
+    document.getElementById('form-warning').style.display = "none";
+    btn.textContent = "Save Changes";
+});
+
+// 4. Sticky Observer
 if ("IntersectionObserver" in window){
   new IntersectionObserver(function(entries){
-    if (joined) return;
+    if (joined) return; // Never show if already joined
     sticky.classList.toggle("show", !entries[0].isIntersecting);
   }, {threshold: 0.15}).observe(document.getElementById("join"));
 }
@@ -648,45 +739,47 @@ function show(kind, msg){
   status.textContent = msg;
 }
 
+// 5. Submit Handler
 btn.addEventListener("click", function(){
   var code  = document.getElementById("code").value.trim();
   var agree = document.getElementById("agree").checked;
 
   if(!code){ show("bad","Enter your referral code. You will find it under Profile in the Tbay app."); return; }
   if(!agree){ show("bad","Tick the box to confirm you have read who qualifies."); return; }
-
-  if(!ENDPOINT){ show("bad","Entries are not open yet. Please check back."); return; }
+  
+  // Prevent saving the exact same code
+  if(code === savedCode) {
+      updateUIState();
+      return;
+  }
 
   btn.disabled = true;
-  show("ok","Submitting your code…");
+  show("ok", savedCode ? "Updating your code…" : "Submitting your code…");
 
-  // text/plain keeps this a "simple" request, so the browser sends no
-  // CORS preflight. Apps Script cannot answer a preflight.
   fetch(ENDPOINT, {
     method: "POST",
     headers: {"Content-Type": "text/plain;charset=utf-8"},
     body: JSON.stringify({
+      uid: userID,
       code: code,
-      key:  SUBMIT_KEY,
-      trap: document.getElementById("website").value
+      changeCount: savedCode ? (changeCount + 1) : 0 
     })
   })
   .then(function(r){ return r.json(); })
   .then(function(res){
     if(res && res.ok){
-      joined = true;
-      sticky.classList.remove("show");
-      if(res.duplicate){
-        show("ok","This code is already registered. You are in — keep sharing it.");
-      } else {
-        show("ok","Your code is registered. Start sharing it — rewards are credited to your Tbay wallet within 48 hours of a friend reaching ₦50,000 in trades.");
+      // Save locally
+      if (savedCode) { 
+          changeCount++; 
+          localStorage.setItem(KEY_CHANGES, changeCount);
       }
-      return;
-    }
-    btn.disabled = false;
-    if(res && res.error === "format"){
-      show("bad","That does not look like a Tbay referral code. Check it under Profile \u203a Referral in the app.");
+      savedCode = code;
+      localStorage.setItem(KEY_CODE, code);
+      
+      updateUIState();
+      btn.disabled = false;
     } else {
+      btn.disabled = false;
       show("bad","That did not go through. Please try again, or contact support in the Tbay app.");
     }
   })
