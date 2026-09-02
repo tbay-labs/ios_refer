@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#003152">
+<meta name="description" content="Invite a friend to Tbay on iPhone. When they trade ₦50,000 in their first 30 days, you both get ₦2,000.">
+<title>Invite a friend to Tbay on iPhone — you both get ₦2,000</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#003152;
+  --deeper:#00203a;
+  --cyan:#00cccc;
+  --cyan-ink:#046f70;
+  --paper:#f3f8f9;
+  --ink:#062231;
+  --ink-soft:#42606f;
+  --rule:#cfe0e4;
+  --warn-bg:#fff8ec;
+  --warn-rule:#e8c98a;
+  --warn-ink:#6b4a12;
+}
+*{box-sizing:border-box}
+html{
+  -webkit-text-size-adjust:100%;
+  background:var(--deep);          /* top overscroll matches the masthead */
+  overflow-x:hidden;
+}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-variation-settings:"wdth" 100;
+  font-size:17px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-tap-highlight-color:rgba(0,204,204,.18);
+}
+.wrap{
+  max-width:960px;margin:0 auto;
+  padding-left:max(24px, env(safe-area-inset-left));
+  padding-right:max(24px, env(safe-area-inset-right));
+}
+h1,h2,h3{margin:0;line-height:1.05;font-weight:800;letter-spacing:-.02em}
+h1{font-variation-settings:"wdth" 112;font-size:clamp(2.1rem,5.6vw,3.9rem)}
+h2{font-variation-settings:"wdth" 108;font-size:clamp(1.5rem,3.4vw,2.3rem)}
+h3{font-size:1.06rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0 0 1rem;max-width:64ch}
+a{color:var(--cyan-ink)}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:2px}
+
+/* ---------- masthead ---------- */
+.mast{background:var(--deep);color:#eaf6f7}
+.mast .wrap{
+  display:flex;align-items:center;gap:6px;
+  padding-top:calc(20px + env(safe-area-inset-top, 0px));
+  padding-bottom:20px;
+}
+.mast .flag{margin-left:auto}
+.back{
+  display:flex;align-items:center;justify-content:center;
+  width:44px;height:44px;margin-left:-11px;   /* optical alignment to the gutter */
+  flex:none;background:none;border:0;padding:0;
+  color:#fff;cursor:pointer;border-radius:50%;
+}
+.back:hover{background:rgba(255,255,255,.12)}
+.back:active{background:rgba(255,255,255,.2)}
+.back-hint{
+  display:none;background:#4a2f0c;border-bottom:1px solid #f0b93f;
+  color:#ffe6b8;font-size:.9rem;line-height:1.45;
+  padding:12px max(24px, env(safe-area-inset-left));
+}
+.back-hint.show{display:block}
+.logo{display:flex;align-items:center;text-decoration:none;color:#fff}
+.logo img{height:28px;width:auto;display:block}
+.logo .logo-text{font-weight:900;font-size:1.22rem;font-variation-settings:"wdth" 118;letter-spacing:-.03em;color:#fff}
+.logo .logo-text span{color:var(--cyan)}
+.mast .flag{font-size:.86rem;color:#8fc0cc}
+
+/* ---------- hero ---------- */
+.hero{background:var(--deep);color:#eaf6f7;padding:12px 0 76px}
+.hero h1{color:#fff;max-width:15ch}
+.hero .lede{color:#a9ccd6;font-size:1.1rem;max-width:52ch;margin-top:20px}
+
+.split{
+  margin:52px 0 0;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:stretch;
+  border:1px solid #1b5375;
+  background:var(--deeper);
+}
+.side{padding:34px 26px}
+.side .who{
+  font-size:.94rem;color:#7fb6c6;margin:0 0 10px;font-weight:600;
+}
+.amt{
+  font-size:clamp(2.6rem,8vw,4.2rem);
+  font-weight:900;
+  font-variation-settings:"wdth" 120;
+  letter-spacing:-.045em;
+  line-height:.92;
+  color:var(--cyan);
+  display:block;
+}
+.side .note{font-size:.92rem;color:#89b4c2;margin:12px 0 0;max-width:26ch}
+.seam{
+  width:1px;background:#1b5375;position:relative;
+}
+.seam::after{
+  content:"both";
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:var(--deeper);color:#7fb6c6;
+  font-size:.8rem;font-weight:600;padding:7px 0;width:52px;text-align:center;
+  border:1px solid #1b5375;border-radius:99px;
+}
+.trigger{
+  border-top:1px solid #1b5375;
+  grid-column:1/-1;
+  padding:18px 26px;
+  font-size:.98rem;
+  color:#bcdde5;
+}
+.trigger b{color:#fff;font-weight:700}
+
+.cta{
+  display:inline-block;margin-top:34px;
+  background:var(--cyan);color:#00202e;
+  font-weight:800;font-size:1.02rem;
+  padding:15px 30px;border-radius:6px;text-decoration:none;
+  border:2px solid var(--cyan);
+}
+.cta:hover{background:#2ee0e0;border-color:#2ee0e0}
+.cta-sub{margin:14px 0 0;font-size:.9rem;color:#89b4c2}
+
+/* ---------- generic section ---------- */
+section{padding:74px 0}
+.sec-intro{margin-bottom:36px}
+.sec-intro p{color:var(--ink-soft);margin-top:14px}
+
+/* ---------- steps ---------- */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{
+  counter-increment:s;
+  display:grid;grid-template-columns:52px 1fr;gap:22px;
+  padding:26px 0;border-top:1px solid var(--rule);
+}
+.steps li:last-child{border-bottom:1px solid var(--rule)}
+.steps li::before{
+  content:counter(s);
+  font-size:1.6rem;font-weight:800;color:var(--cyan-ink);
+  font-variation-settings:"wdth" 115;line-height:1;
+}
+.steps p{margin:7px 0 0;color:var(--ink-soft);font-size:.99rem}
+
+/* ---------- tier table ---------- */
+.tier-wrap{overflow-x:auto;border:1px solid var(--rule);background:#fff}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.98rem}
+caption{text-align:left;padding:20px 22px 0;color:var(--ink-soft);font-size:.93rem}
+th,td{padding:14px 22px;text-align:left;border-bottom:1px solid var(--rule)}
+thead th{
+  font-weight:700;font-size:.88rem;color:var(--ink-soft);
+  border-bottom:2px solid var(--ink);
+}
+tbody th{font-weight:700}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:none}
+td.total{font-weight:800;color:var(--cyan-ink);font-variation-settings:"wdth" 108}
+.tier-note{margin-top:18px;font-size:.93rem;color:var(--ink-soft)}
+
+/* ---------- rules ---------- */
+.rules{background:var(--warn-bg);border:1px solid var(--warn-rule)}
+.rules .inner{padding:40px 34px}
+.rules h2{color:var(--warn-ink)}
+.rules ul{margin:24px 0 0;padding:0;list-style:none}
+.rules li{
+  padding:16px 0 16px 30px;border-top:1px solid var(--warn-rule);
+  position:relative;color:var(--warn-ink);font-size:1rem;
+}
+.rules li:first-of-type{border-top:none}
+.rules li::before{
+  content:"";position:absolute;left:4px;top:26px;
+  width:9px;height:9px;background:var(--warn-ink);border-radius:2px;
+}
+.rules li b{font-weight:800}
+
+/* ---------- join form (lives in the hero) ---------- */
+.form-shell{
+  background:var(--deeper);
+  border:2px solid var(--cyan);
+  padding:32px 34px 34px;
+  max-width:620px;
+  margin-top:34px;
+  scroll-margin-top:18px;
+}
+.form-h{
+  color:#fff;font-size:clamp(1.3rem,3vw,1.75rem);
+  font-variation-settings:"wdth" 108;margin-bottom:14px;
+}
+.form-warn{
+  background:#4a2f0c;border-left:4px solid #f0b93f;
+  color:#ffe6b8;font-size:.95rem;line-height:1.5;
+  padding:14px 16px;margin:0 0 26px;max-width:none;
+}
+.field{margin-bottom:22px}
+.field label{display:block;font-weight:700;font-size:.95rem;color:#fff;margin-bottom:8px}
+.field .hint{font-size:.87rem;color:#7fb6c6;margin:0 0 10px}
+.field input[type=text],.field input[type=email]{
+  width:100%;padding:14px 15px;font-family:inherit;
+  font-size:max(16px, 1rem);   /* under 16px iOS zooms the page on focus */
+  background:#00304f;border:1px solid #2a6c92;color:#fff;border-radius:5px;
+  -webkit-appearance:none;appearance:none;
+}
+.field input::placeholder{color:#6d9cb0}
+.field input:focus{border-color:var(--cyan)}
+.consent{display:flex;gap:12px;align-items:flex-start;margin-bottom:26px}
+.consent input{margin-top:5px;width:18px;height:18px;flex:none;accent-color:var(--cyan)}
+.consent label{font-size:.93rem;color:#bcdde5;line-height:1.5}
+.consent a{color:var(--cyan)}
+button.cta{font-family:inherit;cursor:pointer;margin-top:0}
+button.cta[disabled]{opacity:.55;cursor:not-allowed}
+.trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.deadline{margin:16px 0 0;font-size:.92rem;color:#7fb6c6;text-align:center}
+.status{margin:18px 0 0;font-size:.95rem;padding:14px 16px;border-radius:5px;display:none}
+.status.ok{display:block;background:#04413f;border:1px solid var(--cyan);color:#c9f7f7}
+.status.bad{display:block;background:#4a2318;border:1px solid #d2724f;color:#ffd9c9}
+
+/* ---------- sticky reminder ---------- */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--cyan);color:#00202e;
+  border-top:2px solid #00b3b3;
+  padding-bottom:env(safe-area-inset-bottom, 0px);
+  transform:translateY(110%);
+  transition:transform .22s ease;
+}
+.sticky.show{transform:translateY(0)}
+.sticky-inner{
+  max-width:960px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:13px max(24px, env(safe-area-inset-left)) 13px max(24px, env(safe-area-inset-right));
+}
+.sticky p{margin:0;font-weight:700;font-size:.97rem;max-width:none}
+.sticky a{
+  background:#00202e;color:#fff;text-decoration:none;
+  font-weight:800;font-size:.95rem;padding:12px 20px;border-radius:5px;
+  white-space:nowrap;flex:none;
+}
+@media (prefers-reduced-motion:reduce){
+  .sticky{transition:none}
+}
+
+/* ---------- faq ---------- */
+details{border-top:1px solid var(--rule);padding:20px 0}
+details:last-of-type{border-bottom:1px solid var(--rule)}
+summary{cursor:pointer;font-weight:700;font-size:1.02rem;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;font-weight:600;color:var(--cyan-ink)}
+details[open] summary::after{content:"–"}
+details p{margin:14px 0 0;color:var(--ink-soft);font-size:.98rem}
+
+/* ---------- closing ---------- */
+.close{background:var(--deep);color:#eaf6f7;text-align:left}
+.close h2{color:#fff;max-width:18ch}
+.close p{color:#a9ccd6;margin-top:16px}
+
+footer{
+  background:var(--deeper);color:#7fa8b8;font-size:.86rem;
+  padding-top:38px;
+  padding-bottom:calc(38px + env(safe-area-inset-bottom, 0px));
+}
+footer p{max-width:78ch;margin-bottom:.7rem}
+footer a{color:#9fd8dd}
+
+.scroll-hint{display:none;margin:12px 0 0;font-size:.88rem;color:var(--ink-soft)}
+
+@media (max-width:720px){
+  .hero{padding-bottom:56px}
+  .split{grid-template-columns:1fr;margin-top:38px}
+  .seam{width:auto;height:1px}
+  .seam::after{padding:5px 0;width:48px}
+  .side{
+    display:grid;grid-template-columns:1fr auto;align-items:center;
+    gap:4px 16px;padding:20px 22px;
+  }
+  .side .who{grid-column:1;grid-row:1;margin:0}
+  .amt{grid-column:2;grid-row:1/3;font-size:2.3rem}
+  .side .note{grid-column:1;grid-row:2;margin:0;font-size:.85rem}
+  .trigger{padding:16px 22px}
+  .form-shell{padding:26px 20px 28px}
+  .rules .inner{padding:30px 22px}
+  section{padding:56px 0}
+  .steps li{grid-template-columns:38px 1fr;gap:16px;padding:22px 0}
+  .steps li::before{font-size:1.35rem}
+  th,td{padding:12px 16px}
+  caption{padding:16px 16px 0}
+  .scroll-hint{display:block}
+  /* full-width buttons give a reliable tap target on phones */
+  .cta{display:block;width:100%;text-align:center;padding:16px 20px}
+  .consent input{width:22px;height:22px;margin-top:3px}
+  summary{padding:2px 0}
+}
+
+@media (max-width:420px){
+  body{font-size:16px}
+  .wrap{
+    padding-left:max(18px, env(safe-area-inset-left));
+    padding-right:max(18px, env(safe-area-inset-right));
+  }
+  .side{padding:22px 18px}
+  .trigger{padding:14px 18px}
+  .rules .inner{padding:24px 18px}
+  .form-shell{padding:22px 17px}
+  .mast .flag{display:none}
+  .logo img{height:24px}
+  section{padding:46px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <button class="back" id="backBtn" type="button" aria-label="Go back to the Tbay app">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+        <path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <a class="logo" href="#" aria-label="Tbay">
+      <!-- Self-host this before launch. See note at the foot of the file. -->
+      <img id="logoImg" src="https://brand-assets.mailchimp.com/01K6N06ZGX1M5YP1VYDYQMTTBN.png"
+           alt="Tbay" height="28" decoding="async">
+      <span class="logo-text" id="logoText" hidden>T<span>bay</span></span>
+    </a>
+    <div class="flag">iPhone referral campaign</div>
+  </div>
+</header>
+<p class="back-hint" id="backHint" role="status">Use your browser or app's own close button to return to Tbay.</p>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Invite a friend to Tbay on iPhone. You both get ₦2,000.</h1>
+    <p class="lede">Register your code below, then share it with someone new to Tbay. When they sign up on iPhone and trade ₦50,000 within 30 days, you each get ₦2,000.</p>
+
+    <div class="split">
+      <div class="side">
+        <p class="who">You get</p>
+        <span class="amt">₦2,000</span>
+        <p class="note">Paid on top of your normal referral reward.</p>
+      </div>
+      <div class="seam"></div>
+      <div class="side">
+        <p class="who">Your friend gets</p>
+        <span class="amt">₦2,000</span>
+        <p class="note">Paid on top of the usual welcome rewards for new users.</p>
+      </div>
+      <div class="trigger">
+        Both rewards unlock once your friend has traded <b>₦50,000 in total within 30 days</b> of creating their Tbay account. It does not have to be one trade.
+      </div>
+    </div>
+
+    <div class="form-shell" id="join">
+      <h2 class="form-h">Submit your code before you share it</h2>
+      <p class="form-warn">Referrals only count once your code is registered here. Share your code without registering it first and no bonus is paid, even if your friend trades.</p>
+
+      <div class="field">
+        <label for="code">Your Tbay referral code</label>
+        <p class="hint">Find it in the Tbay app under Profile &rsaquo; Referral. That is all we need.</p>
+        <input type="text" id="code" name="code" placeholder="e.g. TB4K9QX"
+               autocomplete="off" spellcheck="false" autocapitalize="characters" enterkeyhint="go">
+      </div>
+
+      <!-- Honeypot: hidden from people, bots fill it and get discarded. -->
+      <div class="trap" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="consent">
+        <input type="checkbox" id="agree">
+        <label for="agree">I have read <a href="#rules">who qualifies</a> and I understand that entries are verified, and that referring an existing Tbay user will be disqualified.</label>
+      </div>
+
+      <button class="cta" id="submitBtn" type="button">Register my code</button>
+      <p class="deadline">Registration closes 30 September 2026.</p>
+      <p class="status" id="status" role="status"></p>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-intro">
+      <h2>How it works</h2>
+      <p>Three steps, and nothing to sign up for. If you already have a Tbay account, you are already in.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <div>
+          <h3>Copy your referral code</h3>
+          <p>Open the Tbay app, go to Profile, and copy your code.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Register it at the top of this page</h3>
+          <p>Do this before you share your code with anyone. Referrals made before your code is registered earn no bonus. <a href="#join">Register my code</a></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Share your code with a friend who uses an iPhone</h3>
+          <p>They must be new to Tbay. They download the app from the App Store, create their account, and enter your code during sign-up.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>They trade, you both get paid</h3>
+          <p>They have 30 days from sign-up to trade ₦50,000 in total, across as many trades as they like. Once they reach it, we verify the entry and credit ₦2,000 to your wallet and ₦2,000 to theirs within 48 hours.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="sec-intro">
+      <h2>This adds to what you already earn</h2>
+      <p>Your referral reward depends on your membership level. The ₦2,000 iPhone bonus sits on top of it, so higher levels earn more from the same invite.</p>
+    </div>
+
+    <div class="tier-wrap">
+      <table>
+        <caption>Reward for one qualifying iPhone referral, by membership level.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Membership level</th>
+            <th scope="col">Your usual referral reward</th>
+            <th scope="col">iPhone campaign bonus</th>
+            <th scope="col">Total you receive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Bronze VIP</th><td>₦1,000</td><td>₦2,000</td><td class="total">₦3,000</td></tr>
+          <tr><th scope="row">Silver VIP</th><td>₦1,500</td><td>₦2,000</td><td class="total">₦3,500</td></tr>
+          <tr><th scope="row">Gold VIP</th><td>₦2,000</td><td>₦2,000</td><td class="total">₦4,000</td></tr>
+          <tr><th scope="row">Platinum VIP</th><td>₦2,500</td><td>₦2,000</td><td class="total">₦4,500</td></tr>
+          <tr><th scope="row">Diamond VIP</th><td>₦3,000</td><td>₦2,000</td><td class="total">₦5,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint">Swipe the table sideways to see every column.</p>
+    <p class="tier-note">You also keep earning commission on your friend's trades after the first one, at your usual rate. Nothing about your existing referral rewards changes during this campaign.</p>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <div class="rules">
+      <div class="inner">
+        <h2>Who qualifies</h2>
+        <p style="color:var(--warn-ink);margin-top:14px">Read this before you invite anyone. Rewards that break these rules are cancelled, and repeat attempts can suspend an account.</p>
+        <ul>
+          <li><b>We verify that your friend has never used Tbay before.</b> Every entry is checked against our records. A different email address does not make someone a new user. If the person you refer has held a Tbay account at any point, the entry is disqualified and no reward is paid to either side.</li>
+          <li><b>One reward per device, ever.</b> If a device has already been used to claim a referral reward, a new account on that same device will not earn another one.</li>
+          <li><b>Creating several accounts on one device does not work.</b> Extra accounts opened on the same device are ineligible, and all rewards linked to them are withdrawn.</li>
+          <li><b>You must submit your referral code on this page.</b> Referrals made without registering your code here are not part of this campaign and earn no bonus.</li>
+          <li><b>Your friend must join on iPhone.</b> The account has to be created on the iOS app. Android sign-ups are not part of this campaign.</li>
+          <li><b>₦50,000 of trades must settle within 30 days of your friend creating their account.</b> It can be one trade or several. The clock starts at sign-up, not at download. Cancelled, reversed or declined trades do not count towards the total.</li>
+          <li><b>You cannot refer yourself.</b> Accounts sharing a device, bank account or verified identity with the inviter are ineligible.</li>
+          <li><b>Rewards are credited within 48 hours.</b> Once your friend reaches ₦50,000 in settled trades and the entry passes verification, ₦2,000 reaches each Tbay wallet within 48 hours.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-intro"><h2>Questions</h2></div>
+
+    <details>
+      <summary>How many friends can I invite?</summary>
+      <p>There is no fixed limit, but unusually high referral activity is reviewed manually before rewards are released. Genuine invites always get paid.</p>
+    </details>
+    <details>
+      <summary>My friend already downloaded the app but has not entered a code. Can they still add it?</summary>
+      <p>The code has to be entered during sign-up. If they have already created an account without it, that account cannot be linked to your referral afterwards.</p>
+    </details>
+    <details>
+      <summary>Does the ₦50,000 have to be a single trade?</summary>
+      <p>No. It is a running total. Your friend can reach ₦50,000 across as many trades as they want, as long as it all settles within 30 days of creating their account.</p>
+    </details>
+    <details>
+      <summary>What if my friend does not reach ₦50,000 within 30 days?</summary>
+      <p>The ₦2,000 iPhone bonus does not apply, and the window cannot be extended. The 30 days run from the day they created their Tbay account. Your standard referral rewards are separate from this campaign and follow their own terms.</p>
+    </details>
+    <details>
+      <summary>I use Android. Can I still invite people?</summary>
+      <p>Yes. Your own device does not matter for the bonus. Only your friend needs to join on iPhone.</p>
+    </details>
+    <details>
+      <summary>How do you check whether my friend is really a new user?</summary>
+      <p>Every entry is matched against our account records and device information before a reward is released. Signing up with a different email address does not create a new user in our records, so please only invite people who have genuinely never traded on Tbay.</p>
+    </details>
+    <details>
+      <summary>Why was my reward not paid?</summary>
+      <p>The most common reasons are a friend who turns out to be a returning user, a device that has already claimed a reward, a referral code that was never submitted on this page, or a friend who did not reach ₦50,000 inside the 30-day window. Contact support in the app and the team will tell you which rule applied.</p>
+    </details>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <h2>Register your code, then send it to one person today.</h2>
+    <p>It takes a minute. Your friend downloads Tbay from the App Store and enters your code when they sign up.</p>
+    <a class="cta" href="#join">Register my code</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Campaign runs from [start date] to 30 September 2026 and may close earlier once the reward budget is exhausted. Your code must be registered, and the friend you refer must create their Tbay account, on or before 30 September 2026. Their 30 days to reach ₦50,000 runs from their own sign-up date and may finish after the campaign has closed.</p>
+    <p>Tbay may amend or end this campaign at any time. Rewards are credited to your Tbay wallet in Nigerian naira.</p>
+    <p>Membership level rewards shown are the standard direct invitation rewards and may change independently of this campaign. Full terms apply and are available in the app.</p>
+    <p>Need help? Reach support through the Tbay app.</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <div class="sticky-inner">
+    <p>Register your code to take part</p>
+    <a href="#join">Register</a>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------
+// BACK BUTTON  (iOS only — this page is served inside the iOS app)
+//
+// A web page cannot close its own in-app browser on its own. This
+// tries the methods that work without app changes, in order, and
+// falls back to a visible hint if none of them do.
+//
+// For a guaranteed close, the iOS app needs ONE of:
+//
+//   WKWebView:  a script message handler named "close",
+//               "closeWebView" or "tbay"
+//   URL scheme: one the app intercepts, e.g. tbay://close
+//               — put it in APP_CLOSE_SCHEME below
+//
+// Ask the iOS team which exists, then this button works reliably.
+// Leave APP_CLOSE_SCHEME empty until a scheme is confirmed: sending
+// the browser to an unregistered scheme shows an error page.
+//
+// Note: SFSafariViewController cannot be dismissed from the page at
+// all. If the app uses it, remove this button rather than ship a
+// decorative one — it already has a native Done control.
+// ---------------------------------------------------------------
+var APP_CLOSE_SCHEME = "";
+
+(function(){
+  var backBtn  = document.getElementById("backBtn");
+  var backHint = document.getElementById("backHint");
+
+  function tryIosBridge(){
+    try {
+      if (window.webkit && window.webkit.messageHandlers) {
+        var m = window.webkit.messageHandlers;
+        var handler = m.close || m.closeWebView || m.tbay;
+        if (handler && typeof handler.postMessage === "function") {
+          handler.postMessage("close");
+          return true;
+        }
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  backBtn.addEventListener("click", function(){
+    if (tryIosBridge()) return;
+
+    if (APP_CLOSE_SCHEME) { window.location.href = APP_CLOSE_SCHEME; return; }
+
+    // Works only where the window was opened by script.
+    try { window.close(); } catch (e) {}
+
+    // window.close() fails silently, so check whether we are still here.
+    setTimeout(function(){
+      if (document.hidden) return;
+
+      if (history.length > 1) { history.back(); return; }
+
+      backHint.classList.add("show");
+      window.scrollTo({top: 0, behavior: "smooth"});
+    }, 260);
+  });
+})();
+
+// ---------------------------------------------------------------
+// LOGO: currently loaded from the Mailchimp brand-assets CDN.
+// Download the file and serve it from Tbay's own domain before
+// launch — a third-party CDN can change or expire the URL, and
+// the masthead would silently fall back to the text wordmark.
+// ---------------------------------------------------------------
+(function(){
+  var img = document.getElementById("logoImg");
+  var txt = document.getElementById("logoText");
+  img.addEventListener("error", function(){
+    img.hidden = true;
+    txt.hidden = false;
+  });
+})();
+
+// ---------------------------------------------------------------
+// ENTRY COLLECTION
+// Paste the Google Apps Script web app URL into ENDPOINT, and the
+// same SHARED_KEY you set in the script into SUBMIT_KEY.
+// Setup steps are in apps-script-collector.gs.
+// ---------------------------------------------------------------
+var ENDPOINT   = "https://script.google.com/macros/s/AKfycbyJ60DJwc6bzOe-q1O5FxkuQwkskUqEldXYSXHyNZ9D0MJ2BjCDUv0J4CkGmhosnw/exec";
+var SUBMIT_KEY = "tbay-ios-9f3k2q";
+
+var btn = document.getElementById("submitBtn");
+var status = document.getElementById("status");
+
+// Sticky reminder: visible whenever the form is not on screen, so the
+// registration step cannot be scrolled past and forgotten.
+var sticky = document.getElementById("sticky");
+var joined = false;
+if ("IntersectionObserver" in window){
+  new IntersectionObserver(function(entries){
+    if (joined) return;
+    sticky.classList.toggle("show", !entries[0].isIntersecting);
+  }, {threshold: 0.15}).observe(document.getElementById("join"));
+}
+
+function show(kind, msg){
+  status.className = "status " + kind;
+  status.textContent = msg;
+}
+
+btn.addEventListener("click", function(){
+  var code  = document.getElementById("code").value.trim();
+  var agree = document.getElementById("agree").checked;
+
+  if(!code){ show("bad","Enter your referral code. You will find it under Profile in the Tbay app."); return; }
+  if(!agree){ show("bad","Tick the box to confirm you have read who qualifies."); return; }
+
+  if(!ENDPOINT){ show("bad","Entries are not open yet. Please check back."); return; }
+
+  btn.disabled = true;
+  show("ok","Submitting your code…");
+
+  // text/plain keeps this a "simple" request, so the browser sends no
+  // CORS preflight. Apps Script cannot answer a preflight.
+  fetch(ENDPOINT, {
+    method: "POST",
+    headers: {"Content-Type": "text/plain;charset=utf-8"},
+    body: JSON.stringify({
+      code: code,
+      key:  SUBMIT_KEY,
+      trap: document.getElementById("website").value
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(res){
+    if(res && res.ok){
+      joined = true;
+      sticky.classList.remove("show");
+      if(res.duplicate){
+        show("ok","This code is already registered. You are in — keep sharing it.");
+      } else {
+        show("ok","Your code is registered. Start sharing it — rewards are credited to your Tbay wallet within 48 hours of a friend reaching ₦50,000 in trades.");
+      }
+      return;
+    }
+    btn.disabled = false;
+    if(res && res.error === "format"){
+      show("bad","That does not look like a Tbay referral code. Check it under Profile \u203a Referral in the app.");
+    } else {
+      show("bad","That did not go through. Please try again, or contact support in the Tbay app.");
+    }
+  })
+  .catch(function(){
+    btn.disabled = false;
+    show("bad","That did not go through. Check your connection and try again, or contact support in the Tbay app.");
+  });
+});
+
+document.getElementById("code").addEventListener("keydown", function(e){
+  if(e.key === "Enter"){ e.preventDefault(); btn.click(); }
+});
+</script>
+
+</body>
+</html>
